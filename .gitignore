@@ -1,0 +1,12 @@
+# Generated build artifacts — reproduce with scripts/build_video.sh
+dist/
+
+# macOS
+.DS_Store
+
+# Microsoft Office lock/temp files
+~$*
+
+# Editor / tooling
+node_modules/
+*.log

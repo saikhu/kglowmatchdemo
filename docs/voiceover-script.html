@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KGlowMatch · Voiceover Script</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBEFE9;
+    --paper: #FFFFFF;
+    --ink: #2B1E1C;
+    --ink-soft: #6B5450;
+    --rose: #C77B85;
+    --rose-deep: #9B4F5A;
+    --hairline: rgba(43, 30, 28, 0.12);
+    --serif: "DM Serif Display", Georgia, serif;
+    --sans: "Manrope", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+
+  .doc {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 56px 120px;
+  }
+
+  /* Masthead */
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 28px;
+    margin-bottom: 48px;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  h1 .it { font-style: italic; color: var(--rose-deep); }
+  .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  /* Intro note */
+  .intro {
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 56px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+  }
+  .intro b { color: var(--ink); font-family: var(--serif); font-weight: 400; font-size: 16px; }
+
+  /* Slide block */
+  .slide {
+    margin-bottom: 56px;
+    page-break-inside: avoid;
+  }
+  .slide-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 20px;
+  }
+  .slide-num {
+    font-family: var(--serif);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--rose-deep);
+    width: 80px;
+  }
+  .slide-title {
+    flex: 1;
+  }
+  .slide-title .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .slide-title h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .slide-stats {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .slide-body {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .vo {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .vo p { margin: 0 0 14px; }
+  .vo p:last-child { margin-bottom: 0; }
+  .vo .pause {
+    display: inline-block;
+    color: var(--rose-deep);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 0.15em;
+    padding: 2px 6px;
+    border: 1px solid var(--rose-deep);
+    border-radius: 3px;
+    margin: 0 4px;
+    vertical-align: 4px;
+  }
+  .vo em.cue {
+    font-style: italic;
+    color: var(--rose-deep);
+  }
+
+  .aside {
+    border-left: 1px solid var(--hairline);
+    padding-left: 22px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .aside h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+  .aside h4:not(:first-child) { margin-top: 18px; }
+  .aside ul { margin: 0; padding-left: 16px; }
+  .aside li { margin-bottom: 4px; }
+
+  /* CTA card */
+  .closer {
+    margin-top: 64px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .closer h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0 0 12px;
+    line-height: 1.1;
+  }
+  .closer p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .closer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+
+  @media print {
+    body { background: white; }
+    .doc { padding: 24px; }
+    .slide { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <header class="masthead">
+    <div>
+      <div class="kicker">Tourist Demo · Voiceover Script</div>
+      <h1>Speak your <span class="it">own language.</span><br/>Glow like Seoul.</h1>
+    </div>
+    <div class="meta">
+      KGlowMatch<br/>
+      Direction A · Lila Bloom<br/>
+      6 slides · ~2:10 total<br/>
+      v1 · 21 May 2026
+    </div>
+  </header>
+
+  <div class="intro">
+    <div><b>How to read this</b></div>
+    <div>
+      Each slide has a target duration and an estimated word count tuned for a calm pace of about 150 words per minute.
+      <span class="pause">PAUSE</span> markers are roughly half-second breaths. Lines in <em class="cue">italic rose</em> are tonal cues — read with a smile, slower, or for emphasis.
+      The <b>Aside</b> column suggests on-screen motion, B-roll, or sound design to layer with the narration.
+    </div>
+  </div>
+
+  <!-- 01 ─────────────────────────────────────────────── -->
+  <section class="slide">
+    <div class="slide-head">
+      <div class="slide-num">01</div>
+      <div class="slide-title">
+        <div class="label">Cover · The Hook</div>
+        <h2>Speak your own language. Glow like Seoul.</h2>
+      </div>
+      <div class="slide-stats">
+        00:00 – 00:22<br/>
+        ~52 words<br/>
+        Hold 22 s
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="vo">
+        <p>You've heard the stories. Seoul has the best skincare, the boldest haircuts, the most precise clinics in the world.<span class="pause">PAUSE</span></p>
+        <p>The only thing standing between you and a Korean specialist… <em class="cue">is Korean.</em></p>
+        <p>KGlowMatch is the concierge that closes that gap — quietly, in your own language.</p>
+      </div>
+      <div class="aside">
+        <h4>On screen</h4>
+        <ul>
+          <li>Hero image fades in slowly</li>
+          <li>Language chips animate in last</li>
+          <li>Title reveals line by line</li>
+        </ul>
+        <h4>Audio bed</h4>
+        <ul>
+          <li>Soft, warm strings or kalimba</li>
+          <li>Subtle Seoul street ambience low</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ─────────────────────────────────────────────── -->
+  <section class="slide">
+    <div class="slide-head">
+      <div class="slide-num">02</div>
+      <div class="slide-title">
+        <div class="label">Personas · Who travels for this</div>
+        <h2>They all know what they want. None of them speak Korean.</h2>
+      </div>
+      <div class="slide-stats">
+        00:22 – 00:48<br/>
+        ~64 words<br/>
+        Hold 26 s
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="vo">
+        <p>Meet three people landing in Seoul this weekend.</p>
+        <p><em class="cue">Yuki</em> flies in from Tokyo. She wants glass skin before Monday's client meeting — and absolutely no downtime.</p>
+        <p><em class="cue">Madison</em>, an exchange student from Brooklyn, is here for a serious adult-acne consult. The derms at home keep handing her the same prescription.</p>
+        <p>And <em class="cue">Lina</em>, a creator from Shanghai, has booked a photoshoot Sunday — and wants the perfect hime cut and honey color first.</p>
+      </div>
+      <div class="aside">
+        <h4>On screen</h4>
+        <ul>
+          <li>Persona cards slide up one at a time, in sync with each name</li>
+          <li>Light scale on the active card</li>
+        </ul>
+        <h4>B-roll ideas</h4>
+        <ul>
+          <li>Plane window · Tokyo skyline</li>
+          <li>Brooklyn coffee shop · cracked mirror</li>
+          <li>Shanghai bullet train · phone in hand</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ─────────────────────────────────────────────── -->
+  <section class="slide">
+    <div class="slide-head">
+      <div class="slide-num">03</div>
+      <div class="slide-title">
+        <div class="label">How it works · The method</div>
+        <h2>We do the translation. You stay in your language.</h2>
+      </div>
+      <div class="slide-stats">
+        00:48 – 01:16<br/>
+        ~70 words<br/>
+        Hold 28 s
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="vo">
+        <p>It's three steps. Mostly while you sleep.</p>
+        <p><em class="cue">One.</em> Tell us what you want, the way you'd say it to a friend. A short intake. Three minutes. No account.</p>
+        <p><em class="cue">Two.</em> Our AI rewrites your request as a precise clinical brief — in Korean — and sends it only to vetted, matching specialists.</p>
+        <p><em class="cue">Three.</em> Their answers come back to your inbox. In your language. Side by side.<span class="pause">PAUSE</span> Pick the one you like.</p>
+      </div>
+      <div class="aside">
+        <h4>On screen</h4>
+        <ul>
+          <li>Phone → translation → inbox, choreographed with the three counts</li>
+          <li>Type from EN dissolves into 한국어 mid-sentence on "Two"</li>
+        </ul>
+        <h4>Audio bed</h4>
+        <ul>
+          <li>A clean keystroke on each numbered cue</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ─────────────────────────────────────────────── -->
+  <section class="slide">
+    <div class="slide-head">
+      <div class="slide-num">04</div>
+      <div class="slide-title">
+        <div class="label">Categories · What you can ask for</div>
+        <h2>From a derm consult to a perm.</h2>
+      </div>
+      <div class="slide-stats">
+        01:16 – 01:36<br/>
+        ~48 words<br/>
+        Hold 20 s
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="vo">
+        <p>You can ask for almost anything Korea is famous for.</p>
+        <p><em class="cue">Skincare.</em> Glass skin, hydra-boost, PDT for acne.<span class="pause">PAUSE</span> <em class="cue">Aesthetic.</em> Botox, filler, a thread-lift consult.<span class="pause">PAUSE</span> <em class="cue">Hair.</em> A perm, balayage, the cut you can't explain at home.<span class="pause">PAUSE</span> <em class="cue">Wellness.</em> IV drips, hanbang spa, lymphatic care.</p>
+        <p>One request can stack across all four.</p>
+      </div>
+      <div class="aside">
+        <h4>On screen</h4>
+        <ul>
+          <li>Each card highlights as it's named — pastel swatch glows</li>
+          <li>Quick category-image reveal underneath the title</li>
+        </ul>
+        <h4>Tone</h4>
+        <ul>
+          <li>Read this list slightly faster, like a menu</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ─────────────────────────────────────────────── -->
+  <section class="slide">
+    <div class="slide-head">
+      <div class="slide-num">05</div>
+      <div class="slide-title">
+        <div class="label">Conversation · After you submit</div>
+        <h2>Keep talking, not translating.</h2>
+      </div>
+      <div class="slide-stats">
+        01:36 – 02:00<br/>
+        ~58 words<br/>
+        Hold 24 s
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="vo">
+        <p>Once quotes arrive, every follow-up message is translated <em class="cue">both ways</em> — automatically.</p>
+        <p>You write in English. Your specialist reads it in Korean. Their reply lands back in your inbox, already in your language.</p>
+        <p>"<em class="cue">Will my face be red afterward? I fly home Tuesday.</em>"<span class="pause">PAUSE</span> "<em class="cue">Slight redness for six hours — by Tuesday morning, you'll be photo-ready.</em>"</p>
+        <p>No app. No live chat pressure. Just an email thread that finally makes sense.</p>
+      </div>
+      <div class="aside">
+        <h4>On screen</h4>
+        <ul>
+          <li>Animate the chat thread bubble by bubble, in time with the read</li>
+          <li>Highlight "KO → EN" tag on each clinic reply</li>
+        </ul>
+        <h4>Voice direction</h4>
+        <ul>
+          <li>Use a slightly different inflection for the two quoted lines</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 ─────────────────────────────────────────────── -->
+  <section class="slide">
+    <div class="slide-head">
+      <div class="slide-num">06</div>
+      <div class="slide-title">
+        <div class="label">Begin · The invitation</div>
+        <h2>Ready when you land.</h2>
+      </div>
+      <div class="slide-stats">
+        02:00 – 02:14<br/>
+        ~34 words<br/>
+        Hold 14 s
+      </div>
+    </div>
+    <div class="slide-body">
+      <div class="vo">
+        <p>Submit a request before you fly. Quotes return within a day.</p>
+        <p><em class="cue">You're never charged for asking.</em> Providers pay us in Korea, per lead.<span class="pause">PAUSE</span></p>
+        <p>KGlowMatch. <em class="cue">Speak your own language. Glow like Seoul.</em></p>
+      </div>
+      <div class="aside">
+        <h4>On screen</h4>
+        <ul>
+          <li>Stat row counts up: 3 / &lt;24 / 4 / ₩0</li>
+          <li>End frame: logo + URL, hold 3 s of silence</li>
+        </ul>
+        <h4>Audio bed</h4>
+        <ul>
+          <li>Music swells subtly on the final tagline, then breath-out</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closer card -->
+  <div class="closer">
+    <div>
+      <h3>Producing notes</h3>
+      <p>
+        Pacing target is ~150 wpm. Total speech is roughly 326 words; with pauses and animation holds, the
+        finished video should run between 2:10 and 2:20. If your voice talent runs faster (170+ wpm), pad the
+        animation holds rather than cutting copy — the calm cadence is part of the brand.
+      </p>
+    </div>
+    <div>
+      <h4 style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose-deep); margin: 0 0 12px;">Cue sheet</h4>
+      <ul>
+        <li>00:00 — Cover hero in</li>
+        <li>00:22 — Persona reveal × 3</li>
+        <li>00:48 — Three-step montage</li>
+        <li>01:16 — Category fan-out</li>
+        <li>01:36 — Chat bubble cascade</li>
+        <li>02:00 — Stat counter + CTA</li>
+        <li>02:14 — End frame · silence</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

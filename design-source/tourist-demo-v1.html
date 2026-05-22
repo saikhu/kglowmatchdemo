@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KGlowMatch · Tourist Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #efe8de; font-family: 'Work Sans', system-ui, sans-serif; color: #1c1814; }
+  *, *::before, *::after { box-sizing: border-box; }
+  /* CJK fallback inside artboards */
+  body { font-feature-settings: "kern" 1; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="slides-rose.jsx"></script>
+<script type="text/babel" src="slides-cream.jsx"></script>
+
+<script type="text/babel">
+  const { RoseSlide01, RoseSlide02, RoseSlide03, RoseSlide04, RoseSlide05, RoseSlide06 } = window.RoseSlides;
+  const { CreamSlide01, CreamSlide02, CreamSlide03, CreamSlide04, CreamSlide05, CreamSlide06 } = window.CreamSlides;
+
+  const SLIDE_W = 1280;
+  const SLIDE_H = 720;
+
+  function App() {
+    return (
+      <DesignCanvas storageKey="kglowmatch-tourist-demo">
+        <DCSection id="rose" title="Direction A · Lila Bloom" subtitle="Soft rose pastel · DM Serif Display + Manrope · warmth, intimacy, editorial cards">
+          <DCArtboard id="r1" label="01 · Cover"        width={SLIDE_W} height={SLIDE_H}><RoseSlide01 /></DCArtboard>
+          <DCArtboard id="r2" label="02 · Personas"     width={SLIDE_W} height={SLIDE_H}><RoseSlide02 /></DCArtboard>
+          <DCArtboard id="r3" label="03 · How it works" width={SLIDE_W} height={SLIDE_H}><RoseSlide03 /></DCArtboard>
+          <DCArtboard id="r4" label="04 · Categories"   width={SLIDE_W} height={SLIDE_H}><RoseSlide04 /></DCArtboard>
+          <DCArtboard id="r5" label="05 · Conversation" width={SLIDE_W} height={SLIDE_H}><RoseSlide05 /></DCArtboard>
+          <DCArtboard id="r6" label="06 · Begin"        width={SLIDE_W} height={SLIDE_H}><RoseSlide06 /></DCArtboard>
+        </DCSection>
+
+        <DCSection id="cream" title="Direction B · Hanji Cream" subtitle="Refined cream + ink · Cormorant Garamond + Work Sans · concierge letter, restraint, roman numerals">
+          <DCArtboard id="c1" label="01 · Cover"        width={SLIDE_W} height={SLIDE_H}><CreamSlide01 /></DCArtboard>
+          <DCArtboard id="c2" label="02 · Personas"     width={SLIDE_W} height={SLIDE_H}><CreamSlide02 /></DCArtboard>
+          <DCArtboard id="c3" label="03 · How it works" width={SLIDE_W} height={SLIDE_H}><CreamSlide03 /></DCArtboard>
+          <DCArtboard id="c4" label="04 · Categories"   width={SLIDE_W} height={SLIDE_H}><CreamSlide04 /></DCArtboard>
+          <DCArtboard id="c5" label="05 · Conversation" width={SLIDE_W} height={SLIDE_H}><CreamSlide05 /></DCArtboard>
+          <DCArtboard id="c6" label="06 · Begin"        width={SLIDE_W} height={SLIDE_H}><CreamSlide06 /></DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

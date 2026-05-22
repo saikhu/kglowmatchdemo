@@ -1,0 +1,44 @@
+[
+  {
+    "slide": "01_cover",
+    "start": 0.0,
+    "end": 15.83,
+    "duration": 15.83,
+    "snapped_to_silence_dur": 0.503
+  },
+  {
+    "slide": "02_personas",
+    "start": 15.83,
+    "end": 36.09,
+    "duration": 20.26,
+    "snapped_to_silence_dur": 0.505
+  },
+  {
+    "slide": "03_how_it_works",
+    "start": 36.09,
+    "end": 56.59,
+    "duration": 20.5,
+    "snapped_to_silence_dur": 0.505
+  },
+  {
+    "slide": "04_categories",
+    "start": 56.59,
+    "end": 71.72,
+    "duration": 15.13,
+    "snapped_to_silence_dur": 0.585
+  },
+  {
+    "slide": "05_conversation",
+    "start": 71.72,
+    "end": 87.05,
+    "duration": 15.33,
+    "snapped_to_silence_dur": 0.71
+  },
+  {
+    "slide": "06_begin",
+    "start": 87.05,
+    "end": 99.92,
+    "duration": 12.87,
+    "snapped_to_silence_dur": null
+  }
+]
